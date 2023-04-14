@@ -4,16 +4,31 @@ const app = express();
 const AWS = require('aws-sdk');
 require('dotenv').config();
 
-const s3 = new AWS.S3({
+AWS.config.update({
+  region: 'us-east-1',
   accessKeyId: process.env.AWS_PUBLIC_KEY,
   secretAccessKey: process.env.AWS_SECRATE_KEY
 });
 
-// app.use(express.static('public'))
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+
+const bucketParams = {
+  Bucket: 'savefiletobucketswithsaurabh'
+};
 
 const port = process.argv[3] ? process.argv[3] : 8000 
 
 app.use(express.json());
+
+app.get("/createBucket", async(req, res)=> {
+  s3.createBucket(bucketParams, function(err, data) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json({msg: "Successfull"})
+    }
+  });
+})
 
 app.get("/postImage", async(req, res) => {
     const path = './Public/official.jpeg'
@@ -24,7 +39,7 @@ app.get("/postImage", async(req, res) => {
         } else {
           // const base64EncodedBuffer = data.toString('base64');
           const params = {
-              Bucket: 'savefiletobuckets',
+              Bucket: bucketParams.Bucket,
               Key: "Saurabh",
               Body: data
           };
@@ -46,7 +61,7 @@ app.get("/postImage", async(req, res) => {
 
 app.get('/fetchMyImage', (req, res) => {
   const params = {
-    Bucket: 'savefiletobuckets',
+    Bucket: bucketParams.Bucket,
     Key: "Saurabh",
   };
 
