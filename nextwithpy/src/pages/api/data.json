@@ -1,0 +1,17 @@
+[
+    {
+        "name": "John Doe",
+        "age": 25,
+        "gender": "Male"
+    },
+    {
+        "name": "Jane Smith",
+        "age": 42,
+        "gender": "Female"
+    },
+    {
+        "name": "Bob Johnson",
+        "age": 35,
+        "gender": "Male"
+    }
+]
