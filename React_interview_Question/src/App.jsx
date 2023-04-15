@@ -1,16 +1,18 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
+import CountComponent from './count'
+import { PokemonContext } from './context/PokemonDataContext'
 
 function App() {
   const [count,setCount]=useState(0)
   const manipulation = (state)=>{
-      (state == true) ? setCount(count+1) : setCount(count-1)
-    
+      (state == true) ? setCount(count+1) : setCount(count-1) 
   }
   
-
+  const {result, next, previous} = useContext(PokemonContext)
   return (
     <div className="App">
       <div>
@@ -27,9 +29,30 @@ function App() {
           count is {count}
         </button>
         <button onClick={()=> manipulation(false)}>
-
+        
           Decrised {count}
         </button>
+        <br />
+        {
+          result.results && result.results.map((val,index)=>{
+            return(
+              <>
+              {val.name}<br/>
+              </>
+            )
+          })
+        }
+        <button onClick={previous}>
+          Pre
+        </button>
+        <button onClick={next}>
+        
+         Next
+        </button>
+        <br />
+        <CountComponent/>
+      
+
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
