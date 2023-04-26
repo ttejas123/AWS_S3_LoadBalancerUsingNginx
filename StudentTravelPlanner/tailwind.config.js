@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: (theme) => ({
-        lightBg: "url('../assets/bg-light.png')",
-        lightBg2: "url('../assets/bg-light-2.png')",
-        darkBg: "url('../assets/bg-dark.png')",
+        lightBg: "url('./assets/img/bg-light.png')",
+        lightBg2: "url('./assets/img/bg-light-2.png')",
+        darkBg: "url('./assets/img/bg-dark.png')",
       }),
     },
     fontFamily: {

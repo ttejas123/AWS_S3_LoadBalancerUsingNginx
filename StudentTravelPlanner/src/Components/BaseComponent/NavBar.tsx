@@ -52,16 +52,16 @@ function NavBar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-accent text-base font-semibold">
             <li className="overflow-hidden">
-              <label htmlFor="My-FAQ-Modal" className={`bricks-button ${buttonStyleOnThemeChange()} nav-pill`}>FAQ</label>
+              <label htmlFor="My-FAQ-Modal" className={`bricks-button ${buttonStyleOnThemeChange()} nav-pill`}>Advance</label>
             </li>
             <li>
-              <a href={"/stats"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Stats</a>
+              <a href={"/stats"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Distance</a>
             </li>
             <li>
-              <a href={"/fliphistory"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Flip History</a>
+              <a href={"/fliphistory"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Detail</a>
             </li>
             <li>
-              <a href={"/profile"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Profile</a>
+              <a href={"/profile"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Compare</a>
               {/* <label htmlFor="My-Successfull-shot-Modal" className={`bricks-button ${buttonStyleOnThemeChange()}`}>Profile</label> */}
             </li>
           </ul>
