@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { GoogleMap, Marker, Circle, InfoWindow, DirectionsService, DirectionsRenderer, useJsApiLoader } from '@react-google-maps/api';
 import useStyles from './styles.js';
-import mapStyles from './mapStyles';
+import mapStyles from './mapStyles.js';
 import SampleJSON from "./smap.json"
 // import { SkeletonText } from '@chakra-ui/react';
 
@@ -23,7 +23,17 @@ const circleOptions = {
   radius: 5000 // 3 km
 };
 
-function CircleBasedMap({ coords, places, setCoords, setBounds, setChildClicked, weatherData, setFilteredPlaces }) {
+// interface CircleBaseMapProps {
+//   coords: any 
+//   places: any 
+//   setCoords: any 
+//   setBounds: any 
+//   setChildClicked: any 
+//   weatherData: any 
+//   setFilteredPlaces: any 
+// }
+
+function CircleBasedMap({coords, setFilteredPlaces}) {
     const classes = useStyles();
     const [insideCoordinates, setInsideCoordinates] = useState([]);
     const [center, setCenter] = useState(coords);
@@ -63,7 +73,7 @@ function CircleBasedMap({ coords, places, setCoords, setBounds, setChildClicked,
 
         }).then((response) => {
           setDirectionsResponse(response);
-          console.log(response.routes[0].legs[0].duration.text)
+          // console.log(response.routes[0].legs[0].duration.text)
         }).catch((e) => window.alert("Directions request failed due to " + "status"));
       }
     
@@ -96,7 +106,7 @@ function CircleBasedMap({ coords, places, setCoords, setBounds, setChildClicked,
             >
               <div>
                 <h3>{selectedMarker.college_name}</h3>
-                <img src={`https://static.zollege.in/${selectedMarker.cover}`} width={250} />
+                {/* <img src={`https://static.zollege.in/${selectedMarker.cover}`} width={250} /> */}
                 <p>{selectedMarker.Description}</p>
                 <p>Rating: <b>{selectedMarker.rating}/5</b></p>
                 <div onClick={()=> calculateAndDisplayRoute(selectedMarker.Cordinate)}>Directions</div>
