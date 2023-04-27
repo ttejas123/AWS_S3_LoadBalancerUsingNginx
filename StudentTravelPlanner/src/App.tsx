@@ -1,29 +1,30 @@
 import { useContext, useState } from 'react'
 
 import './App.css'
-import Layout from './Components/Layout/BaseLayout'
-import LeftFilterMenu from './Components/LeftPanal/LeftFilterMenu'
-import Breadcrumb from './Components/BaseComponent/BreadCrumbs'
-import { ThemeContext } from './context/ThemeContext'
-import CircleBasedMap from './Components/RightPanl/CircleBasedMap'
+import Advance from './Components/Advance/Advance'
+import Distence from './Components/Distence/Distence';
+import { NavigationContext } from './context/NavigationContext';
 
 function App() {
-  const theame = useContext(ThemeContext);
-  const [coords, setCoords] = useState({lat: 0, lng: 0});
-  const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const {nav} = useContext(NavigationContext);
   return (
-    <Layout transparent={theame.theme == "light"}>
-      <div className='p-5'>
-      <Breadcrumb active='Map' links={[{name: "Home", url: "/"}]}  />
-      <div className='w-full md:flex justify-center items-center'>
-          <div className='Left-Menu-Filter w-4/12 rounded-lg px-5'><LeftFilterMenu /></div>
-          <div className='Main-Map-content w-8/12 rounded-lg px-5'><CircleBasedMap 
-            coords={coords}
-            setFilteredPlaces={setFilteredPlaces}
-          /></div>
-      </div>
-      </div>
-    </ Layout>
+    <>
+      {
+        nav === 0 && (<Advance />)
+      }
+
+      {
+        nav === 1 && (<Distence />)
+      }
+
+{
+        nav === 2 && (<Distence />)
+      }
+
+{
+        nav === 4 && (<Distence />)
+      }
+    </>
   )
 }
 

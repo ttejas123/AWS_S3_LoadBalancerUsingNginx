@@ -10,7 +10,7 @@ function LeftFilterMenu() {
 
         <br />
 
-        <div className='mt-5 border p-5 rounded-lg'>
+        <div className='border-b p-5 rounded-lg'>
           <div className='font-extrabold text-xl'>
               Course
           </div>
@@ -19,7 +19,7 @@ function LeftFilterMenu() {
           {
             [...new Array(10).fill(1)].map((val, index) => {
               return (<div className='text-gray-500 flex justify-start items-center h-10'>
-              <input type="checkbox" value="Male" name="gender" />  <div className='ml-2'>BSC IT (21)</div>
+              <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>BSC IT (21)</div>
             </div>)
             })
           }
@@ -27,7 +27,7 @@ function LeftFilterMenu() {
         </div>
 
           <br />
-        <div className='mt-5 border p-5 rounded-lg'>
+        <div className='border-b p-5 rounded-lg'>
           <div className='font-extrabold text-xl'>
               State
           </div>
@@ -36,7 +36,7 @@ function LeftFilterMenu() {
           {
             [...new Array(10).fill(1)].map((val, index) => {
               return (<div className='text-gray-500 flex justify-start items-center h-10'>
-              <input type="checkbox" value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
+              <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
             </div>)
             })
           }
@@ -44,7 +44,7 @@ function LeftFilterMenu() {
         </div>
 
         <br />
-        <div className='mt-5 border p-5 rounded-lg'>
+        <div className='border-b p-5 rounded-lg'>
           <div className='font-extrabold text-xl'>
               City
           </div>
@@ -53,7 +53,7 @@ function LeftFilterMenu() {
           {
             [...new Array(10).fill(1)].map((val, index) => {
               return (<div className='text-gray-500 flex justify-start items-center h-10'>
-              <input type="checkbox" value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
+              <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
             </div>)
             })
           }

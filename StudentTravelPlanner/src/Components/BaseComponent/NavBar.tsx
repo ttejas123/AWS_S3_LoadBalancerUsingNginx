@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { NavigationContext } from "../../context/NavigationContext";
 
 function NavBar() {
   const theame = useContext(ThemeContext);
+  const {handleChange} = useContext(NavigationContext)
 
   const buttonStyleOnThemeChange = ():string => {
     if(theame.theme == "dark") return "button-dark-theme"
@@ -29,10 +31,10 @@ function NavBar() {
             </svg>
           </label>
           <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><label htmlFor="My-FAQ-Modal" className="nav-pill">FAQ</label></li>
-            <li><a href={"/stats"}>Stats</a></li>
-            <li><a href={"/fliphistory"}>Flip History</a></li>
-            <li><a>Profile</a></li>
+            <li onClick={()=> handleChange(0)}><label htmlFor="My-FAQ-Modal" className="nav-pill">FAQ</label></li>
+            <li onClick={()=> handleChange(1)}><a href={"/stats"}>Stats</a></li>
+            <li onClick={()=> handleChange(2)}><a href={"/fliphistory"}>Flip History</a></li>
+            <li onClick={()=> handleChange(3)}><a>Profile</a></li>
           </ul>
         </div>
         <a href={"/"}>
@@ -52,16 +54,16 @@ function NavBar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-accent text-base font-semibold">
             <li className="overflow-hidden">
-              <label htmlFor="My-FAQ-Modal" className={`bricks-button ${buttonStyleOnThemeChange()} nav-pill`}>Advance</label>
+              <a href={"/"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Advance</a>
             </li>
             <li>
-              <a href={"/stats"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Distance</a>
+              <a href={"/distance"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Distance</a>
             </li>
             <li>
-              <a href={"/fliphistory"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Detail</a>
+              <a href={"/details"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Detail</a>
             </li>
             <li>
-              <a href={"/profile"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Compare</a>
+              <a href={"/compare"} className={`bricks-button ${buttonStyleOnThemeChange()}`}>Compare</a>
               {/* <label htmlFor="My-Successfull-shot-Modal" className={`bricks-button ${buttonStyleOnThemeChange()}`}>Profile</label> */}
             </li>
           </ul>
