@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import Layout from '../Layout/BaseLayout'
 import Breadcrumb from '../BaseComponent/BreadCrumbs'
 import { ThemeContext } from '../../context/ThemeContext'
+import CircleBasedMap from '../BaseComponent/Map';
 
 function Distence() {
   const theame = useContext(ThemeContext);
@@ -10,10 +11,10 @@ function Distence() {
   return (
     <Layout transparent={theame.theme == "light"}>
       <div className='p-5'>
-      <Breadcrumb active='Map' links={[{name: "Home", url: "/distance"}]}  />
-      <div className='w-full md:flex justify-center items-center'>
-          Distance
-      </div>
+        <Breadcrumb active='Distance' links={[{name: "Home", url: "/"}]}  />
+        <div className='w-full md:flex justify-center items-center'>
+            <CircleBasedMap coords={coords} setFilteredPlaces={setFilteredPlaces} />
+        </div>
       </div>
     </ Layout>
   )

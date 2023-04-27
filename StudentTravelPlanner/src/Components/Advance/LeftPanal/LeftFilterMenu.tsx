@@ -18,7 +18,7 @@ function LeftFilterMenu() {
           <div className='h-40 overflow-y-scroll scrollbar-style-light'>
           {
             [...new Array(10).fill(1)].map((val, index) => {
-              return (<div className='text-gray-500 flex justify-start items-center h-10'>
+              return (<div key={`${val+index}`} className='text-gray-500 flex justify-start items-center h-10'>
               <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>BSC IT (21)</div>
             </div>)
             })
@@ -35,7 +35,7 @@ function LeftFilterMenu() {
           <div className='h-40 overflow-y-scroll scrollbar-style-light'>
           {
             [...new Array(10).fill(1)].map((val, index) => {
-              return (<div className='text-gray-500 flex justify-start items-center h-10'>
+              return (<div key={`${val+index}`} className='text-gray-500 flex justify-start items-center h-10'>
               <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
             </div>)
             })
@@ -52,7 +52,7 @@ function LeftFilterMenu() {
           <div className='h-40 overflow-y-scroll scrollbar-style-light'>
           {
             [...new Array(10).fill(1)].map((val, index) => {
-              return (<div className='text-gray-500 flex justify-start items-center h-10'>
+              return (<div key={`${val+index}`} className='text-gray-500 flex justify-start items-center h-10'>
               <input type="checkbox" className='w-4 h-4' value="Male" name="gender" />  <div className='ml-2'>Airoli (21)</div>
             </div>)
             })

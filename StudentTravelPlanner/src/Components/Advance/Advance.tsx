@@ -4,6 +4,7 @@ import LeftFilterMenu from './LeftPanal/LeftFilterMenu'
 import Breadcrumb from '../BaseComponent/BreadCrumbs'
 import { ThemeContext } from '../../context/ThemeContext'
 import CircleBasedMap from './RightPanl/CircleBasedMap'
+import TravelModeChange from '../BaseComponent/TravelModeChange'
 
 function Advance() {
   const theame = useContext(ThemeContext);
@@ -15,7 +16,9 @@ function Advance() {
             <Breadcrumb active='Map' links={[{name: "Home", url: "/"}]}  />
             <div className='w-full md:flex justify-center items-center'>
                 <div className='Left-Menu-Filter w-4/12 rounded-lg px-5'><LeftFilterMenu /></div>
-                <div className='Main-Map-content w-8/12 rounded-lg px-5'><CircleBasedMap 
+                <div className='Main-Map-content w-8/12 rounded-lg px-5 relative'>
+                  <TravelModeChange />
+                  <CircleBasedMap 
                     coords={coords}
                     setFilteredPlaces={setFilteredPlaces}
                 /></div>

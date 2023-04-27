@@ -23,16 +23,6 @@ const circleOptions = {
   radius: 5000 // 3 km
 };
 
-// interface CircleBaseMapProps {
-//   coords: any 
-//   places: any 
-//   setCoords: any 
-//   setBounds: any 
-//   setChildClicked: any 
-//   weatherData: any 
-//   setFilteredPlaces: any 
-// }
-
 function CircleBasedMap({coords, setFilteredPlaces}) {
     const classes = useStyles();
     const [insideCoordinates, setInsideCoordinates] = useState([]);
@@ -106,7 +96,6 @@ function CircleBasedMap({coords, setFilteredPlaces}) {
             >
               <div>
                 <h3>{selectedMarker.college_name}</h3>
-                {/* <img src={`https://static.zollege.in/${selectedMarker.cover}`} width={250} /> */}
                 <p>{selectedMarker.Description}</p>
                 <p>Rating: <b>{selectedMarker.rating}/5</b></p>
                 <div onClick={()=> calculateAndDisplayRoute(selectedMarker.Cordinate)}>Directions</div>
