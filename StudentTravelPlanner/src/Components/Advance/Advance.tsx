@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Layout from '../Layout/BaseLayout'
 import LeftFilterMenu from './LeftPanal/LeftFilterMenu'
 import Breadcrumb from '../BaseComponent/BreadCrumbs'
@@ -10,6 +10,12 @@ function Advance() {
   const theame = useContext(ThemeContext);
   const [coords, setCoords] = useState({lat: 0, lng: 0});
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+
+      setCoords({ lat: latitude, lng: longitude });
+    });
+  }, []);
   return (
     <Layout transparent={theame.theme == "light"}>
             <div className='p-5'>
