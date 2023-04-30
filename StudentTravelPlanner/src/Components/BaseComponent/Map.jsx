@@ -5,12 +5,12 @@ import mapStyles from './mapStyles.js';
 import SampleJSON from "./smap.json"
 // import { SkeletonText } from '@chakra-ui/react';
 
-const containerStyle: React.CSSProperties = {
+const containerStyle = {
   width: '100%',
   height: '90%'
 };
 
-const circleOptions: google.maps.CircleOptions = {
+const circleOptions = {
   strokeColor: "#000",
   strokeOpacity: 0.4,
   strokeWeight: 2,
@@ -23,27 +23,22 @@ const circleOptions: google.maps.CircleOptions = {
   radius: 5000 // 3 km
 };
 
-type CircleBasedMapProps = {
-  coords: google.maps.LatLngLiteral;
-  setFilteredPlaces: any;
-}
-
-function CircleBasedMap({coords, setFilteredPlaces}: CircleBasedMapProps) {
-    const classes:any = useStyles();
-    const [insideCoordinates, setInsideCoordinates] = useState<any[]>([]);
-    const [center, setCenter] = useState<google.maps.LatLngLiteral>(coords);
-    const mapRef = useRef<any>(null)
-    const [selectedMarker, setSelectedMarker] = useState<any>(null);
-    const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(null)
+function CircleBasedMap({ coords, places, setCoords, setBounds, setChildClicked, weatherData, setFilteredPlaces }) {
+    const classes = useStyles();
+    const [insideCoordinates, setInsideCoordinates] = useState([]);
+    const [center, setCenter] = useState(coords);
+    const mapRef = useRef()
+    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [directionsResponse, setDirectionsResponse] = useState(null)
 
     useEffect(() => {
       const timeout = setTimeout(()=> {
-        const insideCoords = SampleJSON.filter((coord: any) => {
+        const insideCoords = SampleJSON.filter(coord => {
           const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
             new window.google.maps.LatLng(coord.Cordinate),
             new window.google.maps.LatLng(center)
           );
-          return  distance <= (circleOptions.radius ? circleOptions.radius : 0) //coord;
+          return  distance <= circleOptions.radius //coord;
         });
         setInsideCoordinates(insideCoords);
         setFilteredPlaces(insideCoords)
@@ -51,23 +46,27 @@ function CircleBasedMap({coords, setFilteredPlaces}: CircleBasedMapProps) {
       return ()=> {
         clearTimeout(timeout)
       }
-    }, [center, setFilteredPlaces]);
+    }, [center]);
+    
 
-    function handleLoad(map: google.maps.Map) {
+    function handleLoad(map) {
       mapRef.current = map;
     }
-
-    function calculateAndDisplayRoute(destination: google.maps.LatLngLiteral) {
+    
+    function calculateAndDisplayRoute(destination) {
       const directionsService = new window.google.maps.DirectionsService();
 
       directionsService.route({
           origin: coords,
-          destination: destination,
+          destination: destination,//{ "lat": 19.041121, "lng": 72.861402 },
           travelMode: window.google.maps.TravelMode.DRIVING,
+
         }).then((response) => {
           setDirectionsResponse(response);
+          console.log(response.routes[0].legs[0].duration.text)
         }).catch((e) => window.alert("Directions request failed due to " + "status"));
-    }
+      }
+    
 
     const handleMapCenterChanged = () => {
       if (!mapRef.current) return;
@@ -97,6 +96,7 @@ function CircleBasedMap({coords, setFilteredPlaces}: CircleBasedMapProps) {
             >
               <div>
                 <h3>{selectedMarker.college_name}</h3>
+                <img src={`https://static.zollege.in/${selectedMarker.cover}`} width={250} />
                 <p>{selectedMarker.Description}</p>
                 <p>Rating: <b>{selectedMarker.rating}/5</b></p>
                 <div onClick={()=> calculateAndDisplayRoute(selectedMarker.Cordinate)}>Directions</div>
